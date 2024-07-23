@@ -1,11 +1,10 @@
 import React from 'react'
 import { FaUser, FaLock } from 'react-icons/fa'
-import '../../style'
+import '../../style/Login.css'
 
 const LoginForm = () => {
   return (
     <div className='wrapper'>
-        LOGINFORM
         <form action="">
             <h1>LOGIN</h1>
             <div className="input-box">
