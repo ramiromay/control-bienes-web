@@ -4,7 +4,7 @@ import { CAMPOS_EMPLEADO } from "../../settings/formConfig";
 import FormCampoEntrada from "../utils/FormCampoEntrada";
 import { Stack } from "@mui/material";
 import FormCampoAutocompletar from "../utils/FormCampoAutocompletar";
-import FormCalendario from "../utils/FormCalendario";
+import FormCalendario from "../utils/FormCampoCalendario";
 
 const SeguridadFormEmpleado = ({
   formManager = null,

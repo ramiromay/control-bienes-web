@@ -7,7 +7,7 @@ import "@styles/Calendario.css";
 import { Controller } from "react-hook-form";
 import dayjs from 'dayjs'
 
-const FormCalendario = ({
+const FormCampoCalendario = ({
   name,
   control,
   defaultValue = dayjs(),
@@ -61,7 +61,7 @@ const FormCalendario = ({
   );
 };
 
-FormCalendario.propTypes = {
+FormCampoCalendario.propTypes = {
   name: PropTypes.string.isRequired,
   control: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
@@ -74,4 +74,4 @@ FormCalendario.propTypes = {
   helperText: PropTypes.string,
 };
 
-export default FormCalendario;
+export default FormCampoCalendario;

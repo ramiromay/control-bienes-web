@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import "@styles/RangoFechas.css";
-import Calendario from "@components/utils/FormCalendario";
+import Calendario from "@components/utils/FormCampoCalendario";
 
 const RangoFechas = (props) => {
   return (
