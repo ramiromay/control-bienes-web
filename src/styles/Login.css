@@ -1,4 +1,8 @@
 /* aqui todo el estilo */
+* {
+    border: 1px red line;
+}
+
 body{
     background-color: aqua;
     color:blue;

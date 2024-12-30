@@ -1,0 +1,6 @@
+.contenedor-rango-fecha {
+    display: flex !important;
+    gap: 6px !important;
+    padding-top: 2px !important;
+    align-items: center !important;
+}
