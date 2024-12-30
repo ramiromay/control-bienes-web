@@ -1,13 +1,20 @@
-import { Box } from '@mui/material'
-import { SimpleTreeView, TreeItem } from '@mui/x-tree-view';
-import LoginForm from './componentes/Login/LoginForm';
-import './style/Login.css'
+import { SistemaProvider } from "@context/SistemaContext";
+import SICBAPage from "@components/utils/SICBAPage";
+import { SnackbarProvider } from "./context/SnackbarContext";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-
   return (
-    <LoginForm />
+    //<RequestProvider>
+    <SnackbarProvider>
+      <BrowserRouter>
+        <SistemaProvider>
+          <SICBAPage />
+        </SistemaProvider>
+      </BrowserRouter>
+    </SnackbarProvider>
+    //</RequestProvider>
   );
 }
 
-export default App
+export default App;
