@@ -299,6 +299,11 @@ input[type="number"]::-webkit-inner-spin-button {
 .tabla {
   border: 0px !important;
   border-radius: 0px !important;
+  outline: 1px solid rgba(0,0,0,0.2) !important;
+
+  &.small {
+    height: 320px;
+  }
 }
 
 // Arbol estilos

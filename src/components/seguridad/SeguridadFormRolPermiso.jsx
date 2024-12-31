@@ -59,11 +59,7 @@ const SeguridadFormRolPermiso = ({
         disabled={esVisualizacion}
       />
       <DataGrid
-        className="tabla"
-        sx={{
-          height: "320px",
-          outline: "1px solid rgba(0,0,0,0.2)",
-        }}
+        className="tabla small"
         disableRowSelectionOnClick={esVisualizacion}
         isRowSelectable={() => !esVisualizacion}
         columns={columnasRolPermiso}
