@@ -22,8 +22,6 @@ const DialogoEmergente = ({
   textoCancelar = "Cancelar",
   onClickConfirmar = null,
   onClickCancelar = () => {},
-  componentActions = null,
-  componentSteps = null,
 }) => {
   return (
     <Dialog
@@ -50,29 +48,25 @@ const DialogoEmergente = ({
           </DialogTitle>
           <DialogContent className="cuerpo-dialogo">{children}</DialogContent>
           <DialogActions className="pie-dialogo compacto">
-            {componentActions ?? (
-              <>
-                <Button
-                  size="small"
-                  disabled={cargando}
-                  onClick={onClickCancelar}
-                  color="primary"
-                  variant="outlined"
-                >
-                  {textoCancelar}
-                </Button>
-                {disabledConfirmar ? null : (
-                  <Button
-                    size="small"
-                    type="submit"
-                    color="primary"
-                    disabled={cargando}
-                    variant="contained"
-                  >
-                    {textoConfirmar}
-                  </Button>
-                )}
-              </>
+            <Button
+              size="small"
+              disabled={cargando}
+              onClick={onClickCancelar}
+              color="primary"
+              variant="outlined"
+            >
+              {textoCancelar}
+            </Button>
+            {disabledConfirmar ? null : (
+              <Button
+                size="small"
+                type="submit"
+                color="primary"
+                disabled={cargando}
+                variant="contained"
+              >
+                {textoConfirmar}
+              </Button>
             )}
           </DialogActions>
         </form>
