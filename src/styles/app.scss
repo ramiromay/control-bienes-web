@@ -60,11 +60,8 @@ $url-imagen-inicio: "../img/banner-home.svg";
 // Mui Base 
 input[type="number"] {
   -webkit-appearance: none;
-  /* Para Chrome/Safari */
   -moz-appearance: textfield;
-  /* Para Firefox */
   appearance: none;
-  /* Para la compatibilidad general */
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -72,7 +69,6 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 .MuiTreeItem-label {
   font-size: 14px !important;
@@ -83,104 +79,6 @@ input[type="number"]::-webkit-inner-spin-button {
   height: auto !important;
   font-weight: 400 !important;
 }
-
-
-// // textfiel small
-// .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input {
-//   font: inherit;
-//   letter-spacing: inherit;
-//   color: currentColor;
-//   padding: 4px 0 5px;
-//   border: 0;
-//   box-sizing: content-box;
-//   background: none;
-//   height: 1.4375em;
-//   margin: 0;
-//   -webkit-tap-highlight-color: transparent;
-//   display: block;
-//   min-width: 0;
-//   width: 100%;
-//   -webkit-animation-name: mui-auto-fill-cancel;
-//   animation-name: mui-auto-fill-cancel;
-//   -webkit-animation-duration: 10ms;
-//   animation-duration: 10ms;
-//   padding-top: 1px;
-
-//   height: 22px !important;
-//   font-size: 13px !important;
-//   padding: 8px 14px !important;
-// }
-
-// // Label encima
-// .MuiTextField-root>.css-k9e47i-MuiFormLabel-root-MuiInputLabel-root {
-//   color: rgba(0, 0, 0, 0.6);
-//   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-//   font-weight: 500 !important;
-//   font-size: 16px !important;
-//   line-height: 1.4375em;
-//   letter-spacing: 0.00938em;
-//   padding: 0;
-//   position: relative;
-//   display: block;
-//   transform-origin: top left !important;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   max-width: calc(133% - 0px) !important;
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   -webkit-transform: translate(14px, -9px) scale(0.75);
-//   -moz-transform: translate(14px, -9px) scale(0.75);
-//   -ms-transform: translate(14px, -9px) scale(0.75);
-//   transform: translate(14px, -9px) scale(0.75);
-//   -webkit-transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, -webkit-transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-//   transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-//   z-index: 1;
-//   pointer-events: auto;
-//   -webkit-user-select: none;
-//   -moz-user-select: none;
-//   -ms-user-select: none;
-//   user-select: none;
-// }
-
-// // label en textfield
-// .MuiTextField-root>.css-1l3cn67-MuiFormLabel-root-MuiInputLabel-root {
-//   color: #000000A8 !important;
-//   font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
-//   font-weight: 400 !important;
-//   font-size: 13px !important;
-//   line-height: 1.4375em;
-//   letter-spacing: 0.00938em;
-//   padding: 0;
-//   position: relative;
-//   display: block;
-//   transform-origin: top left;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   max-width: calc(100% - 24px);
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   -webkit-transform: translate(14px, 7.2px) scale(1) !important;
-//   -moz-transform: translate(14px, 7.2px) scale(1) !important;
-//   -ms-transform: translate(14px, 7.2px) scale(1) !important;
-//   transform: translate(14px, 7.2px) scale(1) !important;
-//   -webkit-transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, -webkit-transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-//   transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-//   z-index: 1;
-//   pointer-events: none;
-// }
-
-
-// .MuiInputBase-input {
-//   @include contenedor-flex;
-//   height: 17px !important;
-//   font-size: 13px !important;
-//   align-items: center !important;
-//   line-height: normal !important;
-// }
 
 .MuiDataGrid-cell {
   @include contenedor-flex;
@@ -431,91 +329,65 @@ input[type="number"]::-webkit-inner-spin-button {
   color: #6b9b47 !important;
 }
 
-// .padding-cero {
-//   padding: 0px !important;
-// }
-
-// .backdrop-dialogo {
-//   background: rgba(0, 0, 0, 0.4) !important;
-// }
-
-// .icon-close-dialogo {
-//   position: absolute !important;
-//   right: 22px !important;
-//   top: 22px !important;
-// }
-
-// .contenedor-simple-dialog {
-//   display: flex;
-//   background: #fff;
-// }
-
-// .contenedor-dialogo {
-//   padding: 24px !important;
-// }
-
-// .contenedor-simple {
-//   margin-bottom: 20px !important;
-// }
-
-// .titulo-simple {
-//   font-weight: 400 !important;
-//   font-size: 24px !important;
-//   color: #000 !important;
-// }
-
-// .contenido-simple {
-//   font-weight: 400 !important;
-//   font-size: 13px !important;
-//   color: #000 !important;
-//   display: flex !important;
-// }
-
-// .contenedor-scroll-600 {
-//   max-height: 400px;
-//   overflow: auto;
-// }
-
 // Dialogo
-.sicba-dialogo {
-  width: 600px !important;
-  max-width: 600px !important;
-  height: 100%;
+.contenedor-dialogo {
+  width: 600px;
+  max-width: 600px;
+
+  &.alto-completo {
+    height: 100%;
+  }
 
   .contenido-dialogo {
     display: flex;
     flex-direction: column;
     height: 100%;
 
-    .contenedor-titulo {
+    // Título del diálogo
+    .encabezado-dialogo {
       padding: 20px 24px;
 
-      .seccion-titulo {
+      &.compacto {
+        padding: 20px 24px 10px;
+      }
+
+      .seccion-encabezado {
         display: flex;
         justify-content: space-between;
-        padding-bottom: 24px;
         align-items: center;
 
-        .titulo-dialogo {
-          font-weight: 400;
-          font-size: 21px;
-          color: #000;
+        &.extendido {
+          padding-bottom: 24px;
         }
+      }
+
+      .titulo-dialogo {
+        font-weight: 400;
+        font-size: 21px;
+        color: #000;
       }
     }
 
-    .contenedor-contenido {
+    // Contenido principal del diálogo
+    .cuerpo-dialogo {
       padding: 10px 24px;
     }
 
-    .contenedor-acciones {
+    // Sección de acciones en el diálogo
+    .pie-dialogo {
       display: flex;
-      justify-content: space-between;
-      margin-top: 10px,
+      padding: 15px 20px 15px;
+
+      &.compacto {
+        padding: 5px 20px 15px 20px;
+      }
+
+      &.espaciado {
+        justify-content: space-between;
+      }
     }
   }
 }
-
 
 
 // Contenedor Cargando 
@@ -1115,9 +987,23 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 8px 0 22px 0;
     font-size: 18px;
   }
-
-
 }
 
+.sicba-summary-icon {
+  display: flex !important;
+  align-items: center !important;
+  margin-right: 8px !important;
+
+  .icon {
+    font-size: 14px !important;
+  }
+}
+
+.sicba-summary-title {
+  font-size: 13px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-top: 2px !important;
+}
 
 ///////////

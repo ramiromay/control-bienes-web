@@ -1,4 +1,3 @@
-import { React, useState } from "react";
 import { PropTypes } from "prop-types";
 import FormCampoContrasenia from "../utils/FormCampoContrasenia";
 import { CAMPOS_EMPLEADO } from "../../settings/formConfig";
@@ -8,13 +7,10 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
-  Stack,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { ExpandMore, Info, LockOutlined } from "@mui/icons-material";
-
-const panelContrasenia = "1";
+import { ExpandMore, LockOutlined } from "@mui/icons-material";
 
 const SeguridadFormUsuario = ({
   formManager = null,
@@ -38,28 +34,21 @@ const SeguridadFormUsuario = ({
         disabled={esVisualizacion}
       />
       {esModificacion && (
-        <Accordion square="false">
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-             <Box
-              sx={{ display: "flex", alignItems: "center", marginRight: "8px" }}
+        <Accordion square={false}>
+          <Tooltip title="Si deseas mantener su contraseña actual, deje esta sección en blanco.">
+            <AccordionSummary
+              expandIcon={<ExpandMore />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
             >
-              <Tooltip title="Si deseas mantener su contraseña actual, deja esta sección en blanco.">
-                <LockOutlined color="secondary" sx={{ fontSize: "14px" }} />
-              </Tooltip>
-            </Box>
-            <Typography sx={{ fontSize: "13px", display: "flex", alignItems: "center", marginTop: "2px" }}>
-              Contraseña
-            </Typography>
-           
-          </AccordionSummary>
+              <Box className="sicba-summary-icon">
+                <LockOutlined color="secondary" className="icon" />
+              </Box>
+              <Typography className="sicba-summary-title">
+                Contraseña
+              </Typography>
+            </AccordionSummary>
+          </Tooltip>
           <AccordionDetails>
             <FormCampoContrasenia
               id={CAMPOS_EMPLEADO.CONTRASENA_ACTUAL}

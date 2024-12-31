@@ -1,6 +1,5 @@
 import { PropTypes } from "prop-types";
 import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
 import FormCampoAutocompletar from "../utils/FormCampoAutocompletar";
 import { CAMPOS_EMPLEADO } from "../../settings/formConfig";
 import { PaginacionTabla } from "../utils";
@@ -28,6 +27,7 @@ const columnasRolPermiso = [
     headerClassName: "celdas-encabezado-tabla",
   },
 ];
+
 const SeguridadFormRolPermiso = ({
   formManager = null,
   permisos,
@@ -65,7 +65,7 @@ const SeguridadFormRolPermiso = ({
           outline: "1px solid rgba(0,0,0,0.2)",
         }}
         disableRowSelectionOnClick={esVisualizacion}
-        isRowSelectable={(params) => !esVisualizacion}
+        isRowSelectable={() => !esVisualizacion}
         columns={columnasRolPermiso}
         rows={permisos}
         getRowId={(e) => e.idPermiso}

@@ -1,9 +1,7 @@
 import { PropTypes } from "prop-types";
 import { Close } from "@mui/icons-material";
 import {
-  Backdrop,
   Button,
-  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -25,61 +23,59 @@ const DialogoEmergente = ({
   onClickConfirmar = null,
   onClickCancelar = () => {},
   componentActions = null,
-  componentSteps = null
+  componentSteps = null,
 }) => {
   return (
     <Dialog
       open={abierto}
       fullWidth
       PaperProps={{
+        className: "contenedor-dialogo",
         sx: { minWidth: width },
       }}
     >
       <ContenedorCargando isLoading={cargando}>
-        <div className="contenedor-dialogo">
-          <form onSubmit={onClickConfirmar} noValidate>
-            <DialogTitle className="contenedor-simple padding-cero">
-              <Typography className="titulo-simple">{titulo}</Typography>
-              <IconButton
-                aria-label="cerrar"
-                onClick={onClickCancelar}
-                className="icon-close-dialogo "
-              >
+        <form
+          onSubmit={onClickConfirmar}
+          noValidate
+          className="contenido-dialogo"
+        >
+          <DialogTitle className="encabezado-dialogo compacto">
+            <section className="seccion-encabezado">
+              <Typography className="titulo-dialogo">{titulo}</Typography>
+              <IconButton aria-label="cerrar" onClick={onClickCancelar}>
                 <Close />
               </IconButton>
-            </DialogTitle>
-            {componentSteps}
-            <DialogContent className="contenedor-simple padding-cero contenedor-scroll-600">
-              {children}
-            </DialogContent>
-            <DialogActions className="padding-cero">
-              {componentActions ?? (
-                <>
+            </section>
+          </DialogTitle>
+          <DialogContent className="cuerpo-dialogo">{children}</DialogContent>
+          <DialogActions className="pie-dialogo compacto">
+            {componentActions ?? (
+              <>
+                <Button
+                  size="small"
+                  disabled={cargando}
+                  onClick={onClickCancelar}
+                  color="primary"
+                  variant="outlined"
+                >
+                  {textoCancelar}
+                </Button>
+                {disabledConfirmar ? null : (
                   <Button
                     size="small"
-                    disabled={cargando}
-                    onClick={onClickCancelar}
+                    type="submit"
                     color="primary"
-                    variant="outlined"
+                    disabled={cargando}
+                    variant="contained"
                   >
-                    {textoCancelar}
+                    {textoConfirmar}
                   </Button>
-                  {disabledConfirmar ? null : (
-                    <Button
-                      size="small"
-                      type="submit"
-                      color="primary"
-                      disabled={cargando}
-                      variant="contained"
-                    >
-                      {textoConfirmar}
-                    </Button>
-                  )}
-                </>
-              )}
-            </DialogActions>
-          </form>
-        </div>
+                )}
+              </>
+            )}
+          </DialogActions>
+        </form>
       </ContenedorCargando>
     </Dialog>
   );
