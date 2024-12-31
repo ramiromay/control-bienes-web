@@ -1,4 +1,3 @@
-import { Height } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 
 const primaryColor = "#3367d6";
@@ -42,7 +41,13 @@ const googleTheme = createTheme({
         },
       },
     },
-
+    MuiStepLabel : {
+      styleOverrides: {
+        label: {
+          fontSize: "13px",
+        },
+      },
+    },
     MuiFormControl: {
       styleOverrides: {
         root: {

@@ -1,25 +1,10 @@
 import { useEffect, useState } from "react";
 import useFormPasos from "../../context/useFormPasos";
 import { useSeguridad } from "../../context/SeguridadContext";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Divider,
-  IconButton,
-  Step,
-  StepLabel,
-  Stepper,
-  Typography,
-} from "@mui/material";
 import { getNacionalidades, getNombramientos } from "../../services/general";
 import { useSistema } from "../../context/SistemaContext";
 import { getPermisos, getRoles } from "../../services/seguridad";
 import { empleadoValidacion } from "../../settings/validacionConfig";
-import { Close } from "@mui/icons-material";
-import ContenedorCargando from "../utils/ContenedorCargando";
 import SeguridadFormEmpleado from "./SeguridadFormEmpleado";
 import SeguridadFormUsuario from "./SeguridadFormUsuario";
 import SeguridadFormRolPermiso from "./SeguridadFormRolPermiso";
@@ -34,6 +19,7 @@ import useTabla from "../../context/Tabla/useTabla";
 import { CAMPOS_EMPLEADO } from "../../settings/formConfig";
 import dayjs from "dayjs";
 import { DATE_FORMAT } from "../../settings/appConstants";
+import DialogoEmergentePasos from "../utils/DialogoEmergentePasos";
 
 const formEmpleado = 0;
 const formUsuario = 1;
@@ -119,7 +105,6 @@ const SeguridadForm = () => {
 
   useEffect(() => {
     const empleado = complemento.empleado;
-    console.log(empleado);
     if (empleado) {
       const {
         idEmpleado,
@@ -180,7 +165,6 @@ const SeguridadForm = () => {
   const handleSubmitEmpleado = handleSubmit(async (data) => {
     if (indexActual !== pasosFormEmpleado.length) return;
     setCargando(true);
-    console.log(data);
     await handleEnviar(idEmpleado, data)
       .then(() => {
         handleCloseForm();
@@ -228,78 +212,21 @@ const SeguridadForm = () => {
   };
 
   return (
-    <Dialog open={dialogo.abierto} PaperProps={{ className: "sicba-dialogo" }}>
-      <ContenedorCargando isLoading={cargando}>
-        <form
-          onSubmit={handleSubmitEmpleado}
-          noValidate
-          className="contenido-dialogo"
-        >
-          <DialogTitle className="contenedor-titulo">
-            <section className="seccion-titulo">
-              <Typography className="titulo-dialogo">
-                {tituloDialogo}
-              </Typography>
-              <IconButton aria-label="cerrar" onClick={handleCloseForm}>
-                <Close />
-              </IconButton>
-            </section>
-            <Stepper activeStep={indexActual} alternativeLabel>
-              {pasosFormEmpleado.map((step, index) => (
-                <Step key={step}>
-                  <StepLabel
-                    error={errors && index === indexError}
-                    slotProps={{
-                      label: {
-                        sx: {
-                          fontSize: "13px",
-                        },
-                      },
-                    }}
-                  >
-                    {step}
-                  </StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </DialogTitle>
-          <Divider />
-          <DialogContent className="contenedor-contenido">
-            {getStepContent(indexActual)}
-          </DialogContent>
-          <Divider />
-          <DialogActions className="contenedor-acciones">
-            <Button
-              variant="outlined"
-              color="primary"
-              size="small"
-              onClick={handlePasoAnterior}
-              disabled={indexActual === 0}
-            >
-              Anterior
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              type={
-                indexActual !== pasosFormEmpleado.length ? "button" : "submit"
-              }
-              onClick={
-                indexActual !== pasosFormEmpleado.length
-                  ? handleSiguientePaso
-                  : undefined
-              }
-              disabled={
-                esVisualizacion && indexActual === pasosFormEmpleado.length - 1
-              }
-            >
-              Siguiente
-            </Button>
-          </DialogActions>
-        </form>
-      </ContenedorCargando>
-    </Dialog>
+    <DialogoEmergentePasos
+      abierto={dialogo.abierto}
+      titulo={tituloDialogo}
+      pasos={pasosFormEmpleado}
+      indexActual={indexActual}
+      indexError={indexError}
+      cargando={cargando}
+      handleEnviar={handleSubmitEmpleado}
+      handleCerrar={handleCloseForm}
+      getContenidoPaso={getStepContent}
+      handleSiguiente={handleSiguientePaso}
+      handleAnterior={handlePasoAnterior}
+      isVisualizacion={esVisualizacion}
+      errors={errors}
+    />
   );
 };
 
