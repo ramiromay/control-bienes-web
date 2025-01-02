@@ -66,7 +66,8 @@ export const modificarRegistroCatalogo = async (endpoint, data) => {
 };
 
 export const getFamilias = async () => {
-  const response = await get(ENDPOINTS_CATALOGOS.FAMILIA);
+  const endpoint = `${ENDPOINTS_CATALOGOS.FAMILIA}?activo=true`;
+  const response = await get(endpoint);
   if (response.hasError) {
     throw new Error(
       response.generico
@@ -78,7 +79,8 @@ export const getFamilias = async () => {
 };
 
 export const getSubfamilias = async () => {
-  const response = await get(ENDPOINTS_CATALOGOS.SUB_FAMILIA);
+  const endpoint = `${ENDPOINTS_CATALOGOS.SUB_FAMILIA}?activo=true`;
+  const response = await get(endpoint);
   if (response.hasError) {
     throw new Error(
       response.generico
@@ -90,7 +92,8 @@ export const getSubfamilias = async () => {
 };
 
 export const getTipoBien = async () => {
-  const response = await get(ENDPOINTS_CATALOGOS.TIPO_BIEN);
+  const endpoint = `${ENDPOINTS_CATALOGOS.TIPO_BIEN}?activo=true`;
+  const response = await get(endpoint);
   if (response.hasError) {
     throw new Error(
       response.generico
@@ -102,7 +105,8 @@ export const getTipoBien = async () => {
 };
 
 export const getCentroTrabajo = async () => {
-  const response = await get(ENDPOINTS_CATALOGOS.CENTRO_TRABAJO);
+  const endpoint = `${ENDPOINTS_CATALOGOS.CENTRO_TRABAJO}?activo=true`;
+  const response = await get(endpoint);
   if (response.hasError) {
     throw new Error(
       response.generico
@@ -114,7 +118,8 @@ export const getCentroTrabajo = async () => {
 };
 
 export const getTurno = async () => {
-  const response = await get(ENDPOINTS_CATALOGOS.TURNO);
+  const endpoint = `${ENDPOINTS_CATALOGOS.TURNO}?activo=true`;
+  const response = await get(endpoint);
   if (response.hasError) {
     throw new Error(
       response.generico
@@ -127,7 +132,8 @@ export const getTurno = async () => {
 
 
 export const getCentroTrabajoTurno = async () => {
-  const response = await get(ENDPOINTS_CATALOGOS.CENTRO_TRABAJO_TURNO);
+  const endpoint = `${ENDPOINTS_CATALOGOS.CENTRO_TRABAJO_TURNO}?activo=true`;
+  const response = await get(endpoint);
   if (response.hasError) {
     throw new Error(
       response.generico
