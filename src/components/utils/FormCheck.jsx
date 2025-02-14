@@ -8,6 +8,7 @@ const FormCheck = ({
   name,
   disabled = false,
   cargando = false,
+  handleChange = () => {},
   ...props
 }) => {
   return (
@@ -23,7 +24,10 @@ const FormCheck = ({
             <Checkbox
               {...field}
               checked={field.value || false}
-              onChange={(e) => field.onChange(e.target.checked)}
+              onChange={(e) => {
+                field.onChange(e.target.checked);
+                handleChange(e.target.checked);
+              }}
             />
           }
           label={label}
@@ -39,6 +43,7 @@ FormCheck.propTypes = {
   label: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   cargando: PropTypes.bool,
+  handleChange: PropTypes.func,
 };
 
 export default FormCheck;

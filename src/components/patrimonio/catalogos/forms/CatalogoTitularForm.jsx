@@ -75,7 +75,7 @@ const CatalogoTitularForm = () => {
         (ct) => ct.id === idCentroTrabajoTurno
       );
 
-      console.log(centroTrabajoTurnoSeleccionado)
+      console.log(centroTrabajoTurnoSeleccionado);
 
       setValue(CAMPOS_TITULAR.ID_TITULAR, idTitular);
       setValue(CAMPOS_TITULAR.NOMBRE, nombre);
@@ -83,7 +83,10 @@ const CatalogoTitularForm = () => {
         CAMPOS_TITULAR.CENTRO_TRABAJO_TURNO,
         centroTrabajoTurnoSeleccionado
       );
-      setValue(CAMPOS_TITULAR.CENTRO_TRABAJO, centroTrabajoTurnoSeleccionado.name);
+      setValue(
+        CAMPOS_TITULAR.CENTRO_TRABAJO,
+        centroTrabajoTurnoSeleccionado.name
+      );
       setValue(CAMPOS_TITULAR.TURNO, centroTrabajoTurnoSeleccionado.infoExtra);
       setValue(CAMPOS_TITULAR.ACTIVO, activo);
       setValue(CAMPOS_TITULAR.FECHA_CREACION, fechaCreacion);
@@ -160,7 +163,11 @@ const CatalogoTitularForm = () => {
         handleOnChange={changeCentroTrabajoTurno}
         renderOption={ItemInfoExtraAutocompletar}
         getOptionLabel={(option) => `${option.id}`}
-        isOptionEqualToValue={(option, value) => option.id === value.id || option.name === value.name || option.infoExtra === value.infoExtra}
+        isOptionEqualToValue={(option, value) =>
+          option.id === value.id ||
+          option.name === value.name ||
+          option.infoExtra === value.infoExtra
+        }
         error={errors[CAMPOS_TITULAR.CENTRO_TRABAJO_TURNO]}
         helperText={errors[CAMPOS_TITULAR.CENTRO_TRABAJO_TURNO]?.message}
       />

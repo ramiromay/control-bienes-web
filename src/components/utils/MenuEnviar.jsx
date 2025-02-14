@@ -1,13 +1,12 @@
 import { PropTypes } from "prop-types";
 import { NavigateNextSharp } from "@mui/icons-material";
 import { Menu, MenuItem, Typography } from "@mui/material";
-import useMenuEnviar from "../../context/MenuEnviar/useMenuEnviar";
+import useMenu from "../../context/MenuEnviar/useMenuEnviar";
 
 const MenuEnviar = () => {
-  const menuContext = useMenuEnviar();
-  return (
-    menuContext.anchorEl 
-    ? (<Menu
+  const menuContext = useMenu();
+  return menuContext.anchorEl ? (
+    <Menu
       anchorReference="anchorPosition"
       anchorPosition={
         menuContext.mousePosition
@@ -51,9 +50,8 @@ const MenuEnviar = () => {
         </Typography>
         <NavigateNextSharp sx={{ color: "white" }} />
       </MenuItem>
-    </Menu>)
-    : null
-  );
+    </Menu>
+  ) : null;
 };
 
 MenuEnviar.propTypes = {

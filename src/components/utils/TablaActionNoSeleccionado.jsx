@@ -5,13 +5,18 @@ import { FileDownloadSharp } from "@mui/icons-material";
 import { exportarFilasTablaExcel } from "@settings/utils";
 import { useGridApiContext } from "@mui/x-data-grid";
 
-const TableActionNoSelected = ({ children, titulo = "Titulo", hasError = false}) => {
+const TableActionNoSelected = ({
+  children,
+  titulo = "Titulo",
+  hasError = false,
+}) => {
   const tablaRef = useGridApiContext();
   return (
     <Box className="contenedor-action-no-seleccionado">
       <Typography className="titulo-contenedor-action" variant="subtitle1">
         {titulo}
       </Typography>
+
       <Box className="botones-contenedor-action">
         <Box>{children}</Box>
         <Boton
@@ -26,9 +31,9 @@ const TableActionNoSelected = ({ children, titulo = "Titulo", hasError = false})
 };
 
 TableActionNoSelected.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   titulo: PropTypes.string.isRequired,
-  hasError: PropTypes.bool.isRequired
+  hasError: PropTypes.bool.isRequired,
 };
 
 export default TableActionNoSelected;

@@ -4,7 +4,7 @@ import { CAMPOS_EMPLEADO } from "../../settings/formConfig";
 import FormCampoEntrada from "../utils/FormCampoEntrada";
 import { Stack } from "@mui/material";
 import FormCampoAutocompletar from "../utils/FormCampoAutocompletar";
-import FormCalendario from "../utils/FormCampoCalendario";
+import FormCampoCalendario from "../utils/FormCampoCalendario";
 
 const SeguridadFormEmpleado = ({
   formManager = null,
@@ -59,7 +59,7 @@ const SeguridadFormEmpleado = ({
         />
       </Stack>
       <Stack direction="row" gap={2}>
-        <FormCalendario
+        <FormCampoCalendario
           id={CAMPOS_EMPLEADO.FECHA_NACIMIENTO}
           name={CAMPOS_EMPLEADO.FECHA_NACIMIENTO}
           label="Fecha Nacimiento"
@@ -98,7 +98,7 @@ const SeguridadFormEmpleado = ({
         required
         disabled={esVisualizacion}
       />
-      <FormCalendario
+      <FormCampoCalendario
         id={CAMPOS_EMPLEADO.FECHA_INGRESO}
         name={CAMPOS_EMPLEADO.FECHA_INGRESO}
         label="Fecha Ingreso"

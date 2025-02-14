@@ -35,7 +35,7 @@ export const SnackbarProvider = ({ children }) => {
       >
         <Alert
           onClose={hideSnackbar}
-          severity="success"
+          severity={severity}
           variant="filled"
           sx={{ width: "100%" }}
         >

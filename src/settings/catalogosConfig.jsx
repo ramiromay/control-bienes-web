@@ -1,5 +1,6 @@
 import { ENDPOINTS_CATALOGOS } from "@settings/apiConfig";
 import {
+  almacenMappingRules,
   entCaracteristicaBienMappingRules,
   entCentroTrabajoMappingRules,
   entCentroTrabajoTurnoMappingRules,
@@ -7,12 +8,14 @@ import {
   entClaveVehicularMappingRules,
   entColorMappingRules,
   entCombustibleVehicularMappingRules,
+  entConceptoMovimientoMappingRules,
   entDocumentoMappingRules,
   entEstadoFisicoMappingRules,
   entEstadoGeneralMappingRules,
   entFamiliaMappingRules,
   entLineaVehicularMappingRules,
   entMarcaVehicularMappingRules,
+  entMetodoAdquisicionMappingRules,
   entOrigenValorMappingRules,
   entResguardanteMappingRules,
   entSubFamiliaMappingRules,
@@ -56,7 +59,7 @@ export const IDS_CATALOGOS = {
   USO_INMUEBLE: 25,
   VERSION_VEHICULAR: 26,
   ALMACENES: 27,
-  ANAQUELES: 28,
+  METODO_ADQUISICION: 28,
   CATALOGO_ZONAS: 29,
   CONCEPTOS_MOVIMIENTO: 30,
 };
@@ -272,24 +275,33 @@ export const catalogosConfig = new Map([
   ],
   [
     IDS_CATALOGOS.ALMACENES,
-    { titulo: "Almacenes", endpoint: ENDPOINTS_CATALOGOS.ALMACENES },
-  ],
-  [
-    IDS_CATALOGOS.ANAQUELES,
-    { titulo: "Anaqueles", endpoint: ENDPOINTS_CATALOGOS.ANAQUELES },
-  ],
-  [
-    IDS_CATALOGOS.CATALOGO_ZONAS,
     {
-      titulo: "Catálogo de Zonas",
-      endpoint: ENDPOINTS_CATALOGOS.CATALOGO_ZONAS,
+      titulo: "Almacenes",
+      endpoint: ENDPOINTS_CATALOGOS.ALMACENES,
+      mappingRules: almacenMappingRules,
     },
   ],
+  [
+    IDS_CATALOGOS.METODO_ADQUISICION,
+    {
+      titulo: "Tipos de Adquisiciones",
+      endpoint: ENDPOINTS_CATALOGOS.METODO_ADQUISICION,
+      mappingRules: entMetodoAdquisicionMappingRules,
+    },
+  ],
+  // [
+  //   IDS_CATALOGOS.CATALOGO_ZONAS,
+  //   {
+  //     titulo: "Catálogo de Zonas",
+  //     endpoint: ENDPOINTS_CATALOGOS.CATALOGO_ZONAS,
+  //   },
+  // ],
   [
     IDS_CATALOGOS.CONCEPTOS_MOVIMIENTO,
     {
       titulo: "Conceptos de Movimiento",
       endpoint: ENDPOINTS_CATALOGOS.CONCEPTOS_MOVIMIENTO,
+      mappingRules: entConceptoMovimientoMappingRules,
     },
   ],
 ]);

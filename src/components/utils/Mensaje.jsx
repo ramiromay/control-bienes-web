@@ -1,10 +1,18 @@
 import { PropTypes } from "prop-types";
 import { Info } from "@mui/icons-material";
+import { Box } from "@mui/material";
 
-const Mensaje = ({ icono = <Info color="primary" className="icon" />, mensaje = "default" }) => {
+const Mensaje = ({
+  icono = <Info color="primary" className="icon" />,
+  mensaje = "default",
+}) => {
   return (
     <aside className="Mensaje">
-      {icono}
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        {icono}
+      </Box>
       <p className="message">{mensaje}</p>
     </aside>
   );

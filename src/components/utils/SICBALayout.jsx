@@ -1,8 +1,8 @@
 import BarraNavegacion from "@components/utils/BarraNavegacion";
 import { useSistema } from "../../context/SistemaContext";
-import { Box, Typography } from "@mui/material";
-import { Outlet, useLocation } from "react-router-dom";
-import SimpleDialog from "../dialogs/SimpleDialog";
+import { Box} from "@mui/material";
+import { Outlet } from "react-router-dom";
+import DialogoEmergenteError from "./DialogoEmergenteError";
 
 const SICBALayout = () => {
   const { error, alerta, handleCerrarAlerta } = useSistema();
@@ -13,9 +13,11 @@ const SICBALayout = () => {
         <Outlet />
       </Box>
       {error.hasError && (
-        <SimpleDialog open={alerta} close={handleCerrarAlerta}>
-          <Typography className="contenido-simple">{error.message}</Typography>
-        </SimpleDialog>
+        <DialogoEmergenteError
+          error={error}
+          alerta={alerta}
+          handleCerrarAlerta={handleCerrarAlerta}
+        />
       )}
     </>
   );

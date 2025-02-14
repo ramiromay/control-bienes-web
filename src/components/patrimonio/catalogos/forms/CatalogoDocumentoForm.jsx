@@ -20,6 +20,12 @@ import {
   getMotivoTramite,
 } from "../../../../services/patrimonio";
 import { getSubModulos } from "../../../../services/sistema";
+import { mapArray } from "../../../../settings/utils";
+import {
+  compMotivoTramiteMappingRules,
+  compSubModuloMapppingRules,
+  compTipoTramiteMappingRules,
+} from "../../../../settings/mappingRulesConfig";
 
 const CatalogoDocumentoForm = () => {
   const {
@@ -60,12 +66,31 @@ const CatalogoDocumentoForm = () => {
       getSubModulos(),
       handleGetRegistroCatalogo(filaSeleccionada[0]),
     ])
-      .then(([tiposTramites, motivosTramites, subModulos, data]) => {
-        setTiposTramites(tiposTramites);
-        setMotivosTramites(motivosTramites);
-        setSubModulos(subModulos);
-        setDocumento(data);
-      })
+      .then(
+        ([
+          tiposTramitesData,
+          motivosTramitesData,
+          subModulosData,
+          documentoData,
+        ]) => {
+          const tiposTramites = mapArray(
+            tiposTramitesData,
+            compTipoTramiteMappingRules
+          );
+          const motivosTramites = mapArray(
+            motivosTramitesData,
+            compMotivoTramiteMappingRules
+          );
+          const subModulos = mapArray(
+            subModulosData,
+            compSubModuloMapppingRules
+          );
+          setTiposTramites(tiposTramites);
+          setMotivosTramites(motivosTramites);
+          setSubModulos(subModulos);
+          setDocumento(documentoData);
+        }
+      )
       .catch((error) => {
         handleCerrarDialogo();
         handleError(error);

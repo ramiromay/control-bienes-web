@@ -19,7 +19,7 @@ const useFormPasos = ({
     resolver: yupResolver(schemes[indexEsquemaValidacion]),
     mode: "onChange",
   });
-  const { reset, resetField, trigger, formState } = formManager;
+  const { reset, resetField, trigger } = formManager;
 
   const handleSiguientePaso = async () => {
     if (esVisualizacion) {
@@ -31,8 +31,6 @@ const useFormPasos = ({
       return;
     }
     const isFormValido = await trigger();
-    console.log(isFormValido);
-    console.log(formState.errors);
     if (isFormValido) {
       setPasoManager({
         indexError: -1,

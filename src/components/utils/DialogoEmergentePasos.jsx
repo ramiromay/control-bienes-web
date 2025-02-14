@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import ContenedorCargando from "./ContenedorCargando";
 import { Close } from "@mui/icons-material";
+import { useEffect, useRef } from "react";
 
 const DialogoEmergentePasos = ({
   abierto,
@@ -30,6 +31,7 @@ const DialogoEmergentePasos = ({
   isVisualizacion,
   errors,
 }) => {
+  const dialogContentRef = useRef(null);
   const totalPasos = pasos.length;
   const typeSubmitButton = indexActual !== totalPasos ? "button" : "submit";
   const getActionSubmitButton =
@@ -41,6 +43,12 @@ const DialogoEmergentePasos = ({
     : indexActual >= totalPasos - 1
       ? "Confirmar"
       : "Siguiente";
+
+  useEffect(() => {
+    if (dialogContentRef.current) {
+      dialogContentRef.current.scrollTop = 0;
+    }
+  }, [indexActual]);
 
   return (
     <Dialog
@@ -67,7 +75,7 @@ const DialogoEmergentePasos = ({
             </Stepper>
           </DialogTitle>
           <Divider />
-          <DialogContent className="cuerpo-dialogo">
+          <DialogContent className="cuerpo-dialogo" ref={dialogContentRef}>
             {getContenidoPaso(indexActual)}
           </DialogContent>
           <Divider />

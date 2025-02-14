@@ -18,6 +18,7 @@ const DialogoEmergente = ({
   cargando = false,
   abierto = false,
   disabledConfirmar = false,
+  activateEspacioPie = false,
   textoConfirmar = "Confirmar",
   textoCancelar = "Cancelar",
   onClickConfirmar = null,
@@ -29,7 +30,7 @@ const DialogoEmergente = ({
       fullWidth
       PaperProps={{
         className: "contenedor-dialogo",
-        sx: { minWidth: width },
+        sx: { minWidth: width, width: width },
       }}
     >
       <ContenedorCargando isLoading={cargando}>
@@ -47,13 +48,15 @@ const DialogoEmergente = ({
             </section>
           </DialogTitle>
           <DialogContent className="cuerpo-dialogo">{children}</DialogContent>
-          <DialogActions className="pie-dialogo compacto">
+          <DialogActions
+            className={`pie-dialogo ${activateEspacioPie ? "" : "compacto"}`}
+          >
             <Button
               size="small"
               disabled={cargando}
               onClick={onClickCancelar}
               color="primary"
-              variant="outlined"
+              variant="text"
             >
               {textoCancelar}
             </Button>

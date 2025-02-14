@@ -5,7 +5,6 @@ import {
   compMunicipioMappingRules,
   compPeriodoMappingRules,
   compTipoResponsableMappingRules,
-  compUnidadAdministrativaMappingRules,
 } from "../settings/mappingRulesConfig";
 
 export const getMunicipios = async () => {
@@ -32,8 +31,12 @@ export const getPeriodos = async () => {
   return mapArray(response.result, compPeriodoMappingRules);
 };
 
-export const getUnidadesAdministrativas = async () => {
-  const response = await get(ENDPOINTS_GENERAL.UNIDAD_ADMINISTRATIVA);
+export const getUnidadesAdministrativas = async ({
+  desdeNivel = 1,
+  hastaNivel = 3,
+} = {}) => {
+  const endpoint = `${ENDPOINTS_GENERAL.UNIDAD_ADMINISTRATIVA}?desdeNivel=${desdeNivel}&hastaNivel=${hastaNivel}`;
+  const response = await get(endpoint);
   if (response.hasError) {
     throw new Error(
       response.generico
@@ -41,7 +44,7 @@ export const getUnidadesAdministrativas = async () => {
         : response.message
     );
   }
-  return mapArray(response.result, compUnidadAdministrativaMappingRules);
+  return response.result;
 };
 
 export const getTipoResponsable = async () => {
@@ -78,4 +81,34 @@ export const getNombramientos = async () => {
     );
   }
   return response.result;
+};
+
+export const getBMS = async () => {
+  const url = `${ENDPOINTS_GENERAL.BMS}`;
+  const response = await get(url);
+  if (response.hasError) {
+    throw new Error(
+      response.generico
+        ? "Se produjo un error al intentar contactar con el servidor y recuperar la lista de BMS."
+        : response.message
+    );
+  }
+  return response.result;
+};
+
+export const getCuentas = async () => {
+  const url = `${ENDPOINTS_GENERAL.CUENTA}`;
+  const response = await get(url);
+  if (response.hasError) {
+    throw new Error(
+      response.generico
+        ? "Se produjo un error al intentar contactar con el servidor y recuperar la lista de cuentas."
+        : response.message
+    );
+  }
+  return response.result.map((item) => ({
+    id: item.idCuenta,
+    name: item.nombre,
+    infoExtra: item.nivelCompleto,
+  }));
 };

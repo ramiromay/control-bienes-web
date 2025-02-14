@@ -10,7 +10,10 @@ import {
   invertirEstadoEmpleado,
 } from "../services/seguridad";
 import { mapArray, mapObject } from "../settings/utils";
-import { compColumnasTablaMappingRules, entEmpleadoMappingRules } from "../settings/mappingRulesConfig";
+import {
+  compColumnasTablaMappingRules,
+  entEmpleadoMappingRules,
+} from "../settings/mappingRulesConfig";
 import { useSistema } from "./SistemaContext";
 
 const SeguridadContext = createContext();
@@ -20,7 +23,8 @@ export const useSeguridad = () => {
 };
 
 export const SeguridadProvider = ({ children }) => {
-  const { handleError, handleIniciarCarga, handleFinalizarCarga, sleep } = useSistema();
+  const { handleError, handleIniciarCarga, handleFinalizarCarga, sleep } =
+    useSistema();
   const [dialogo, setDialogo] = useState({
     abierto: false,
     modo: MODO_DIALOGO.CREACION,
@@ -108,6 +112,7 @@ export const SeguridadProvider = ({ children }) => {
 
   const handleCrearEmpleado = async (data) => {
     const entidad = mapObject(data, entEmpleadoMappingRules);
+    console.log(entidad);
     await crearEmpleado(entidad);
     await handleRefrescarListaEmpleados();
   };
@@ -115,6 +120,7 @@ export const SeguridadProvider = ({ children }) => {
   const handleModificarEmpleado = async (filaSeleccionada, data) => {
     const idEmpleado = parseInt(filaSeleccionada);
     const entidad = mapObject(data, entEmpleadoMappingRules);
+    console.log(entidad);
     await actualizarEmpleado(idEmpleado, entidad);
     await handleRefrescarListaEmpleados();
   };
@@ -127,13 +133,13 @@ export const SeguridadProvider = ({ children }) => {
     return await getEmpleadoById(idEmpleado);
   };
 
-  const handleEnviar = async (filaSeleccionada, data)  => {
+  const handleEnviar = async (filaSeleccionada, data) => {
     if (dialogo.modo === MODO_DIALOGO.CREACION) {
       await handleCrearEmpleado(data);
     } else {
-      await handleModificarEmpleado(filaSeleccionada, data)
+      await handleModificarEmpleado(filaSeleccionada, data);
     }
-  }
+  };
 
   useEffect(() => {
     handleIniciarCarga(MODO_CARGA.DATOS);

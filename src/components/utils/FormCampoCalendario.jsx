@@ -64,7 +64,7 @@ const FormCampoCalendario = ({
 FormCampoCalendario.propTypes = {
   name: PropTypes.string.isRequired,
   control: PropTypes.object.isRequired,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.object,
   rules: PropTypes.object,
   label: PropTypes.string.isRequired,
   format: PropTypes.string,

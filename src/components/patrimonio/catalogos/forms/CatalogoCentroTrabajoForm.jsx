@@ -17,6 +17,8 @@ import {
 } from "../../../../services/general";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { centroTrabajoValidacion } from "../../../../settings/validacionConfig";
+import { mapArray } from "../../../../settings/utils";
+import { compUnidadAdministrativaMappingRules } from "../../../../settings/mappingRulesConfig";
 
 const CatalogoCentroTrabajoForm = () => {
   const { handleError } = useSistema();
@@ -51,14 +53,18 @@ const CatalogoCentroTrabajoForm = () => {
     Promise.all([
       getMunicipios(),
       getPeriodos(),
-      getUnidadesAdministrativas(),
+      getUnidadesAdministrativas({ desdeNivel: 3, hastaNivel: 3 }),
       handleGetRegistroCatalogo(filaSeleccionada[0]),
     ])
       .then(
         ([municipios, periodos, unidadesAdministrativas, centroTrabajo]) => {
+          const unidadesAdministrativasMap = mapArray(
+            unidadesAdministrativas,
+            compUnidadAdministrativaMappingRules
+          );
           setMunicipios(municipios);
           setPeriodos(periodos);
-          setUnidadesAdministrativas(unidadesAdministrativas);
+          setUnidadesAdministrativas(unidadesAdministrativasMap);
           setCentroTrabajo(centroTrabajo);
         }
       )
@@ -78,7 +84,7 @@ const CatalogoCentroTrabajoForm = () => {
         idCentroTrabajo,
         idPeriodo,
         idMunicipio,
-        idUnidadAdministrativa,
+        nivelUnidadAdministrativa,
         direccion,
         clave,
         nombre,
@@ -86,7 +92,9 @@ const CatalogoCentroTrabajoForm = () => {
         fechaCreacion,
         fechaModificacion,
       } = centroTrabajo;
-      
+
+      console.log(centroTrabajo);
+
       const periodoSeleccionado = periodos.find(
         (entidad) => entidad.id === idPeriodo
       );
@@ -94,7 +102,7 @@ const CatalogoCentroTrabajoForm = () => {
         (entidad) => entidad.id === idMunicipio
       );
       const unidadAdministrativaSeleccionada = unidadesAdministrativas.find(
-        (entidad) => entidad.id === idUnidadAdministrativa
+        (entidad) => entidad.id === nivelUnidadAdministrativa
       );
 
       setValue(CAMPOS_CENTRO_TRABAJO.ID_CENTRO_TRABAJO, idCentroTrabajo);

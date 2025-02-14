@@ -84,14 +84,12 @@ const Catalogos = () => {
     // eslint-disable-next-line
   }, [itemSeleccionado]);
 
-  console.log(dialogo.idCatalogo);
-  console.log(IDS_CATALOGOS.UBICACION);
   return (
     <section className="contenedor-modulo">
       {handleEsCargaModulo() ? (
         <CatalogosSkeleton />
       ) : (
-        <section className="contenedor-maestro">
+        <section className="contenedor-sub-modulo">
           <CatalogosLista />
           <TablaProvider
             datos={tabla.datos}

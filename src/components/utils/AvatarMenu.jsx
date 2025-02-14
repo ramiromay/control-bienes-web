@@ -9,8 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowDropDownIcon } from "@mui/x-date-pickers";
-import useControlVisible from "../../context/useControlVisible";
 import { memo, useMemo } from "react";
+import useMenuEmergente from "../../context/MenuEnviar/useMenuEmergente";
+import { CLAVE_TOKEN } from "../../settings/sistemaConfig";
 
 function stringToColor(cadena) {
   let hash = 0;
@@ -48,15 +49,23 @@ function stringAvatar(nombre) {
   };
 }
 
+const opcionesMenu = [
+  {
+    label: "Cerrar sesión",
+    onClick: () => {
+      localStorage.removeItem(CLAVE_TOKEN);
+      window.location.reload();
+    },
+  },
+];
+
 const AvatarMenu = memo(({ nombre, usuario }) => {
-  const { visible, handleClose, handleOpen } = useControlVisible();
+  const { anchorEl, handleCerrarMenu, handleAbrirMenuEvent } =
+    useMenuEmergente();
   const botonAvatarMemorizado = useMemo(() => {
     return (
-      <Button onClick={handleOpen} className="avatar-menu-button">
-        <Avatar
-        onClick={() => console.log("se hizo clic")}
-        {...stringAvatar(nombre)}
-      />
+      <Button onClick={handleAbrirMenuEvent} className="avatar-menu-button">
+        <Avatar {...stringAvatar(nombre)} />
         <Box className="avatar-menu-info">
           <article>
             <Typography className="avatar-name">{nombre}</Typography>
@@ -65,17 +74,17 @@ const AvatarMenu = memo(({ nombre, usuario }) => {
         </Box>
         <ArrowDropDownIcon className="avatar-dropdown-icon" />
       </Button>
-      
     );
-  }, [nombre, usuario, handleOpen]);
+  }, [nombre, usuario, handleAbrirMenuEvent]);
 
   return (
     <Box className="avatar-menu-container">
       {botonAvatarMemorizado}
       <Menu
-        anchorEl={visible}
-        open={Boolean(visible)}
-        onClose={handleClose}
+        id="id-barra-navegacion"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleCerrarMenu}
         transformOrigin={{ vertical: "top", horizontal: "right" }}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         slotProps={{
@@ -89,12 +98,15 @@ const AvatarMenu = memo(({ nombre, usuario }) => {
           <Divider />
         </section>
         <section className="menu-items-container">
-          <MenuItem className="menu-item" onClick={handleClose}>
-            Perfil
-          </MenuItem>
-          <MenuItem className="menu-item" onClick={handleClose}>
-            Cerrar sesión
-          </MenuItem>
+          {opcionesMenu.map((opcion) => (
+            <MenuItem
+              key={opcion.label}
+              onClick={opcion.onClick}
+              className="menu-item"
+            >
+              <Typography className="menu-item-text">{opcion.label}</Typography>
+            </MenuItem>
+          ))}
         </section>
       </Menu>
     </Box>

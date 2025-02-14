@@ -18,6 +18,8 @@ import {
   getTipoResponsable,
 } from "../../../../services/general";
 import { getPersonas } from "../../../../services/seguridad";
+import { mapArray } from "../../../../settings/utils";
+import { compUnidadAdministrativaMappingRules } from "../../../../settings/mappingRulesConfig";
 
 const CatalogoResguardanteForm = () => {
   const {
@@ -53,22 +55,26 @@ const CatalogoResguardanteForm = () => {
       getPersonas(),
       getPeriodos(),
       getTipoResponsable(),
-      getUnidadesAdministrativas(),
+      getUnidadesAdministrativas({ desdeNivel: 3, hastaNivel: 3 }),
       handleGetRegistroCatalogo(filaSeleccionada[0]),
     ])
       .then(
         ([
-          personas,
-          periodos,
-          tiposResponsables,
-          getUnidadesAdministrativas,
-          data,
+          personasData,
+          periodosData,
+          tiposResponsablesData,
+          unidadesAdministrativasData,
+          resguardanteData,
         ]) => {
-          setPersonas(personas);
-          setPeriodos(periodos);
-          setTiposResponsable(tiposResponsables);
-          setUnidadesAdministrativas(getUnidadesAdministrativas);
-          setResguardante(data);
+          const unidadesAdministrativas = mapArray(
+            unidadesAdministrativasData,
+            compUnidadAdministrativaMappingRules
+          );
+          setPersonas(personasData);
+          setPeriodos(periodosData);
+          setTiposResponsable(tiposResponsablesData);
+          setUnidadesAdministrativas(unidadesAdministrativas);
+          setResguardante(resguardanteData);
         }
       )
       .catch((error) => {
@@ -88,7 +94,7 @@ const CatalogoResguardanteForm = () => {
         idPeriodo,
         idPersona,
         idTipoResponsable,
-        idUnidadAdministrativa,
+        nivelUnidadAdministrativa,
         noConvenio,
         observaciones,
         responsable,
@@ -108,7 +114,7 @@ const CatalogoResguardanteForm = () => {
       );
 
       const unidadAdministrativaSeleccionada = unidadesAdministrativas.find(
-        (e) => e.id === idUnidadAdministrativa
+        (e) => e.id === nivelUnidadAdministrativa
       );
 
       setValue(CAMPOS_RESGUARDNATE.ID_RESGUARDNATES, idResguardante);
@@ -134,13 +140,13 @@ const CatalogoResguardanteForm = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     setCargando(true);
-    await handleEnviar(filaSeleccionada, data)
+    handleEnviar(filaSeleccionada, data)
       .then(() => {
         const mensaje = esModificacion
           ? "Resguardante modificado correctamente"
           : "Resguardante guardado correctamente";
         handleCerrarDialogo();
-        showSnackbar(mensaje, "success");
+        showSnackbar(mensaje);
       })
       .catch((error) => {
         handleError(error);

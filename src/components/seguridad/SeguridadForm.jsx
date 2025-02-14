@@ -85,7 +85,6 @@ const SeguridadForm = () => {
           compNacionalidadesMappingRules
         );
         const rolesMap = mapArray(roles, compRolesMappingRules);
-        console.log(empleado);
         setComplemento({
           nombramientos: nombramientosMap,
           nacionalidades: nacionalidadesMap,
@@ -168,7 +167,10 @@ const SeguridadForm = () => {
     await handleEnviar(idEmpleado, data)
       .then(() => {
         handleCloseForm();
-        showSnackbar("Empleado creado exitosamente");
+        const mensaje = esModificacion
+          ? "Empleado modificado exitosamente"
+          : "Empleado creado exitosamente";
+        showSnackbar(mensaje);
       })
       .catch((error) => {
         handlePasoAnterior();

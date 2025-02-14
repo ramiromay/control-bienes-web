@@ -48,7 +48,7 @@ const CatalogoCaracteristicaForm = () => {
     Promise.all([
       getFamilias(),
       getSubfamilias(),
-      handleGetRegistroCatalogo(filaSeleccionada[0])
+      handleGetRegistroCatalogo(filaSeleccionada[0]),
     ])
       .then(([familias, subFamilia, caracteristica]) => {
         setFamilias(familias);
@@ -116,6 +116,7 @@ const CatalogoCaracteristicaForm = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     setCargando(true);
+    console.log("inicia proceso");
     await handleEnviar(filaSeleccionada[0], data)
       .then(() => {
         const mensaje = esModificacion
@@ -128,8 +129,11 @@ const CatalogoCaracteristicaForm = () => {
         handleError(error);
       })
       .finally(() => {
+        console.log("inicia petiicion");
+
         setCargando(false);
       });
+    console.log("finaliza proceso");
   });
 
   return (
@@ -223,4 +227,3 @@ const CatalogoCaracteristicaForm = () => {
 };
 
 export default CatalogoCaracteristicaForm;
-

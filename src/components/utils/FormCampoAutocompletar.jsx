@@ -17,7 +17,7 @@ const FormCampoAutocompletar = ({
   isOptionEqualToValue = (option, value) =>
     option.id === value.id || option.name === value.name,
   handleOnChange = () => {},
-  renderOption,
+  renderOption = undefined,
 }) => {
   return (
     <Controller
@@ -28,6 +28,7 @@ const FormCampoAutocompletar = ({
       render={({ field }) => (
         <Autocomplete
           {...field}
+          id={name}
           fullWidth
           disablePortal={true}
           size="small"
@@ -68,7 +69,7 @@ const FormCampoAutocompletar = ({
               }}
             />
           )}
-          renderOption={renderOption ? renderOption : undefined}
+          renderOption={renderOption}
           ListboxProps={{
             style: {
               maxHeight: "160px",

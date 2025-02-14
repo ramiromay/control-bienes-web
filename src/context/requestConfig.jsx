@@ -1,22 +1,23 @@
 import { API_URL } from "@settings/apiConfig";
 import { entResponseMappingRules } from "@settings/mappingRulesConfig";
 import { mapObject } from "../settings/utils";
+import { BAD_REQUEST_ID } from "../settings/appConstants";
 
 const request = async (endpoint, options = {}) => {
   const { method = "GET", headers = {}, body } = options;
-   const authHeader = localStorage.getItem('auth_token');
-   if (authHeader) {
-     headers['Authorization'] = `Bearer ${authHeader}`;
-   }
- 
-   const config = {
-     method,
-     headers: {
-       "Content-Type": "application/json",
-       ...headers,
-     },
-   };
- 
+  const authHeader = localStorage.getItem("auth_token");
+
+  if (authHeader) {
+    headers["Authorization"] = `Bearer ${authHeader}`;
+  }
+
+  const config = {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  };
 
   if (body) {
     config.body = JSON.stringify(body);
@@ -27,9 +28,14 @@ const request = async (endpoint, options = {}) => {
       return response.json();
     })
     .then((json) => {
+      let mensaje = json.message;
+      if (json.statusCode === 400) {
+        mensaje = `${BAD_REQUEST_ID} ${mensaje}`;
+      }
       return mapObject(json, entResponseMappingRules, {
         generico: false,
         hasError: json.hasError,
+        message: mensaje,
       });
     })
     .catch((error) => {

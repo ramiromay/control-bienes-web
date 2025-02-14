@@ -12,7 +12,7 @@ const TablaActionSeleccionado = ({
       <IconButton onClick={handleQuitarSeleccion}>
         <CloseSharp color="primary" />
       </IconButton>
-      <Typography className="titulo-contenedor-action" variant="subtitle1">
+      <Typography component='div' className="titulo-contenedor-action" variant="subtitle1">
         {titulo}
       </Typography>
       <Box className="botones-contenedor-action">

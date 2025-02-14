@@ -2,15 +2,8 @@ import { PropTypes } from "prop-types";
 import FormCampoContrasenia from "../utils/FormCampoContrasenia";
 import { CAMPOS_EMPLEADO } from "../../settings/formConfig";
 import FormCampoEntrada from "../utils/FormCampoEntrada";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import { ExpandMore, LockOutlined } from "@mui/icons-material";
+import { LockOutlined } from "@mui/icons-material";
+import Acordeon from "../utils/Acordeon";
 
 const SeguridadFormUsuario = ({
   formManager = null,
@@ -34,54 +27,42 @@ const SeguridadFormUsuario = ({
         disabled={esVisualizacion}
       />
       {esModificacion && (
-        <Accordion square={false}>
-          <Tooltip title="Si deseas mantener su contraseña actual, deje esta sección en blanco.">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
-            >
-              <Box className="sicba-summary-icon">
-                <LockOutlined color="secondary" className="icon" />
-              </Box>
-              <Typography className="sicba-summary-title">
-                Contraseña
-              </Typography>
-            </AccordionSummary>
-          </Tooltip>
-          <AccordionDetails>
-            <FormCampoContrasenia
-              id={CAMPOS_EMPLEADO.CONTRASENA_ACTUAL}
-              name={CAMPOS_EMPLEADO.CONTRASENA_ACTUAL}
-              label="Contraseña Actual"
-              autoComplete="current-password"
-              control={control}
-              error={errors[CAMPOS_EMPLEADO.CONTRASENA_ACTUAL]}
-              helperText={errors[CAMPOS_EMPLEADO.CONTRASENA_ACTUAL]?.message}
-              required
-            />
-            <FormCampoContrasenia
-              id={CAMPOS_EMPLEADO.CONTRASENA_NUEVA}
-              name={CAMPOS_EMPLEADO.CONTRASENA_NUEVA}
-              label="Contraseña Nueva"
-              autoComplete="new-password"
-              control={control}
-              error={errors[CAMPOS_EMPLEADO.CONTRASENA_NUEVA]}
-              helperText={errors[CAMPOS_EMPLEADO.CONTRASENA_NUEVA]?.message}
-              required
-            />
-            <FormCampoContrasenia
-              id={CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA}
-              name={CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA}
-              label="Confirmar Contraseña"
-              autoComplete="new-password"
-              control={control}
-              error={errors[CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA]}
-              helperText={errors[CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA]?.message}
-              required
-            />
-          </AccordionDetails>
-        </Accordion>
+        <Acordeon
+          icono={<LockOutlined color="secondary" className="icon" />}
+          titulo="Contraseña"
+          tooltipTitle="Si deseas mantener su contraseña actual, deje esta sección en blanco."
+        >
+          <FormCampoContrasenia
+            id={CAMPOS_EMPLEADO.CONTRASENA_ACTUAL}
+            name={CAMPOS_EMPLEADO.CONTRASENA_ACTUAL}
+            label="Contraseña Actual"
+            autoComplete="current-password"
+            control={control}
+            error={errors[CAMPOS_EMPLEADO.CONTRASENA_ACTUAL]}
+            helperText={errors[CAMPOS_EMPLEADO.CONTRASENA_ACTUAL]?.message}
+            required
+          />
+          <FormCampoContrasenia
+            id={CAMPOS_EMPLEADO.CONTRASENA_NUEVA}
+            name={CAMPOS_EMPLEADO.CONTRASENA_NUEVA}
+            label="Contraseña Nueva"
+            autoComplete="new-password"
+            control={control}
+            error={errors[CAMPOS_EMPLEADO.CONTRASENA_NUEVA]}
+            helperText={errors[CAMPOS_EMPLEADO.CONTRASENA_NUEVA]?.message}
+            required
+          />
+          <FormCampoContrasenia
+            id={CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA}
+            name={CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA}
+            label="Confirmar Contraseña"
+            autoComplete="new-password"
+            control={control}
+            error={errors[CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA]}
+            helperText={errors[CAMPOS_EMPLEADO.CONFIRMAR_CONTRASENA]?.message}
+            required
+          />
+        </Acordeon>
       )}
       {!esVisualizacion && !esModificacion && (
         <>

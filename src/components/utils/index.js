@@ -1,5 +1,5 @@
-export { default as Seccion } from './Seccion';
-export { default as RangoFechas } from './RangoFechas';
+export { default as EncabezadoSeccion } from './EncabezadoSeccion';
+export { default as RangoFechas } from './FormCampoRangoFechas';
 export { default as Arbol } from './Arbol';
 export { default as Tabla } from './Tabla';
 export { default as Boton } from './Boton';

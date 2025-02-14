@@ -18,7 +18,7 @@ const Seguridad = () => {
 
   return (
     <section className="contenedor-modulo">
-      <section className="contenedor-maestro">
+      <section className="contenedor-sub-modulo">
         <TablaProvider
           datos={tabla.datos}
           campoId={tabla.campoId}

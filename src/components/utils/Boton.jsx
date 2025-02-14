@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 
 const Boton = ({
   icono = null,
@@ -7,6 +7,7 @@ const Boton = ({
   accion = null,
   variante = "text",
   desactivarMargenDerecho = false,
+  cargando = false,
   ...props
 }) => {
   return (
@@ -18,7 +19,7 @@ const Boton = ({
       size="small"
       variant={variante}
       color="primary"
-      startIcon={icono}
+      startIcon={cargando ? <CircularProgress size={18} /> :icono}
       onClick={accion}
       {...props}
     >

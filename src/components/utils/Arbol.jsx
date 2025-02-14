@@ -7,7 +7,7 @@ import {
   FolderOpenRounded,
 } from "@mui/icons-material";
 import { SimpleTreeView, TreeItem } from "@mui/x-tree-view";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Box, Typography } from "@mui/material";
 
 const Arbol = ({
@@ -15,8 +15,10 @@ const Arbol = ({
   treeData = [],
   handleItemSeleccionado,
   itemSeleccionado,
+  defaultExpandedItems = ["0"],
+  checkboxSelection = false,
 }) => {
-  const [expandedItems] = useState(["0"]);
+  const [expandedItems] = useState(defaultExpandedItems);
 
   let clickTimeout = null;
 
@@ -33,14 +35,18 @@ const Arbol = ({
 
   const renderTree = (nodes) => (
     <TreeItem
-      itemId={nodes.id.toString()}
+      itemId={nodes.id?.toString()}
       key={nodes.id}
       label={
         <Typography className="texto-items-arbol" variant="inherit">
-          {nodes.name}
+          {nodes.label}
         </Typography>
       }
-    />
+    >
+      {nodes.children &&
+        nodes.children.length > 0 &&
+        nodes.children.map((childNode) => renderTree(childNode))}
+    </TreeItem>
   );
 
   const treeIcons = useMemo(
@@ -63,7 +69,6 @@ const Arbol = ({
     }),
     []
   );
-
   return (
     <Box className="contenedor-arbol">
       <SimpleTreeView
@@ -72,6 +77,7 @@ const Arbol = ({
         onSelectedItemsChange={handleSelectedItemsChange}
         expansionTrigger="iconContainer"
         slots={treeIcons}
+        checkboxSelection={checkboxSelection}
       >
         <TreeItem
           itemId="0"
@@ -81,7 +87,9 @@ const Arbol = ({
             </Typography>
           }
         >
-          {treeData.map((data) => renderTree(data))}
+          {treeData.length > 0
+            ? treeData.map((data) => renderTree(data))
+            : null}
         </TreeItem>
       </SimpleTreeView>
     </Box>

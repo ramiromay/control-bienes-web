@@ -41,7 +41,7 @@ const googleTheme = createTheme({
         },
       },
     },
-    MuiStepLabel : {
+    MuiStepLabel: {
       styleOverrides: {
         label: {
           fontSize: "13px",
@@ -144,6 +144,15 @@ const googleTheme = createTheme({
           backgroundColor: "#ffffff",
           color: "#5f6368",
           borderTop: "1px solid #ddd",
+        },
+      },
+    },
+    MuiMenu: {
+      styleOverrides: {
+        root: {
+          "& .MuiBackdrop-root": {
+            backgroundColor: "transparent",
+          },
         },
       },
     },

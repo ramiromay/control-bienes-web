@@ -26,7 +26,6 @@ const PaginacionTabla = () => {
         display: "flex",
         justifyContent: "space-between", // Justifica contenido entre izquierda y derecha
         alignItems: "center", // Alinea verticalmente
-        outline: "1px solid #e0e0e0",
         borderTop: "1px solid #e0e0e0",
         padding: "5.3px 20px",
       }}

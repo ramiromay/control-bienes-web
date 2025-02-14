@@ -5,11 +5,16 @@ import BarraHerramientasTabla from "./BarraHerramientasTabla";
 import PaginacionTabla from "./PaginacionTabla";
 import { useCallback, useMemo } from "react";
 
+const ROW_HEIGHT = 47.5;
+const COLUMN_HEADER_HEIGHT = 46.8;
+const DENSITY = "compact";
+
 const Tabla = ({
   datos = [],
   columnas = [],
   filaSeleccionada = [],
   orderBy = "id",
+  cargando = false,
   handleFilaSeleccionada = () => {},
   componenteActions = null,
 }) => {
@@ -37,11 +42,12 @@ const Tabla = ({
         rowSelectionModel={filaSeleccionada}
         onRowSelectionModelChange={handleFilaSeleccionada}
         checkboxSelection
-        rowHeight={47.5}
-        columnHeaderHeight={46.8}
-        density="compact"
+        rowHeight={ROW_HEIGHT}
+        columnHeaderHeight={COLUMN_HEADER_HEIGHT}
+        density={DENSITY}
         disableColumnMenu
         disableAutosize
+        loading={cargando}
         ignoreDiacritics
         disableMultipleRowSelection
         slots={{
@@ -59,6 +65,10 @@ const Tabla = ({
           toolbar: {
             showQuickFilter: true,
           },
+          loadingOverlay: {
+            variant: 'skeleton',
+            noRowsVariant: 'skeleton',
+          },  
         }}
       />
     </Box>

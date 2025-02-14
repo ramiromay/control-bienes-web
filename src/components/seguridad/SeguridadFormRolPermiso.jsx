@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import FormCampoAutocompletar from "../utils/FormCampoAutocompletar";
 import { CAMPOS_EMPLEADO } from "../../settings/formConfig";
 import { PaginacionTabla } from "../utils";
+import ItemInfoExtraAutocompletar from "../utils/ItemInfoExtraAutocompletar";
 
 const columnasRolPermiso = [
   {
@@ -53,6 +54,9 @@ const SeguridadFormRolPermiso = ({
         label="Rol"
         control={control}
         options={roles}
+        renderOption={ItemInfoExtraAutocompletar}
+        getOptionLabel={(option) => `${option.id} - ${option.name}`}
+        isOptionEqualToValue={(option, value) => option.id === value.id || option.name === value.name || option.infoExtra === value.infoExtra}
         error={errors[CAMPOS_EMPLEADO.ROL]}
         helperText={errors[CAMPOS_EMPLEADO.ROL]?.message}
         required
